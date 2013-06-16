@@ -1,0 +1,32 @@
+import itertools; #has many iteration tools
+# I used .combinations which generates all combinations in a list of given length
+def checkio(data):
+    smallest = -1 
+    total = 0
+    for weight in data:
+        total += weight # Use total - current set weight to get other side
+    for i in range(0,len(data)): # used in combinations to get all possible lengths
+        for combo in itertools.combinations(data,i): # creates all combos in data of length i
+            set_weight = 0
+            for item in combo: #adds up all weights in current combo
+                set_weight += item
+            diff = calc_diff(total - set_weight, set_weight) # returns absolute difference
+            if smallest == -1 or smallest > diff: #either first time or current set is smallest so far
+                smallest = diff
+    print(smallest)
+    return smallest
+def calc_diff(set, remainder):
+    return abs(set-remainder)
+    
+#Some hints
+#Your can use combinations if you want use bruteforce
+
+
+#These "asserts" using only for self-checking and not necessary for auto-testing
+if __name__ == '__main__':
+    assert checkio([10, 10]) == 0, "1st example"
+    assert checkio([10]) == 10, "2nd example"
+    assert checkio([5, 8, 13, 27, 14]) == 3, "3rd example"
+    assert checkio([5, 5, 6, 5]) == 1, "4th example"
+    assert checkio([12, 30, 30, 32, 42, 49]) == 9, "5th example"
+    assert checkio([1, 1, 1, 3]) == 0, "6th example"
