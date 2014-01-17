@@ -3,7 +3,7 @@ Takes in a square maze as a list of lists - rows of columns.
 From the beginning goes to each available cell until it finds the exit.
 It avoids walls and doesn't cover ground it has already covered using recursion.
 
-Start at cell 0,0
+Start at cell 0,0 .
 Mark cells covered with '3' so that we don't go back
 """
 grid = [[0, 0, 0, 0, 0, 1],[1, 1, 0, 0, 0, 1],[0, 0, 0, 1, 0, 0],[0, 1, 1, 0, 0, 1], [0, 1, 0, 0, 1, 0], [0, 1, 0, 0, 0, 2]]
