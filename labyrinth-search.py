@@ -10,7 +10,7 @@ grid = [[0, 0, 0, 0, 0, 1],[1, 1, 0, 0, 0, 1],[0, 0, 0, 1, 0, 0],[0, 1, 1, 0, 0,
 
 def search(x, y):
     if grid[x][y] == 55: # we have found the exit
-        print("Exit fournd here: {}{}" .format(x, y))
+        print("Exit found here: {}{}" .format(x, y))
         return True
     elif grid[x][y] == 1: # can't go to this cell
         print("Can't go to : {}{}" .format(x, y))
