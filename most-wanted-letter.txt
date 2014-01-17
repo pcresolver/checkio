@@ -1,0 +1,38 @@
+import re # needed for findall()
+from collections import * # needed for defaultdict
+
+"""  You are given a text, which contains different english letters and punctuation symbols. You should find the most frequent letter in the text. The letter returned must be in lower case.
+While checking for the most wanted letter, casing does not matter, so for the purpose of your search, "A" == "a". Make sure you do not count punctuation symbols and whitespaces, only letters. If you have two or more letters with the same frequency, then return the letter which comes first in the alphabet. (Ex: we have "b" and "f" as the most frequent, then return "b")
+
+Input: A text for analysis. A string (Unicode).
+
+Output: The most frequent letter in lower case. A string. """
+
+def checkio(text):
+    lower_text = text.lower() # convert original text to lower case
+    lower = re.findall("[a-z]", lower_text) # create list of characters only including a-z
+    lower = sorted(lower) # sort the list. I thought this might help to choose the first alphabetically in case of a tie
+    d = defaultdict(int) # used to create a dictionary with letters as keys and the count of each letter as values
+    for letter in lower:
+        d[letter] += 1
+    popular_letter = find_popular_letter(d) # calls my function to determine the 'winner'
+    return popular_letter
+    
+def find_popular_letter(d):
+     """ a) create a list of the dict's keys and values; 
+         b) return the most popular letter alphabetically"""  
+     v=list(d.values())
+     k=list(d.keys())
+     winners = [] # used to store the most popular letters
+     max_position = v.index(max(v)) # max(v) finds the highest value and v.index returns the position in the list of the first entry with that value
+     max_value = max(v) # storing this for use later
+     for i in range(0, len(v)):
+         if v[i] == max_value:
+             winners.append(k[i]) # add the key value in i'th position of keys list
+     winner = min(winners) # min(winners) returns the first alphabetically
+     return winner
+#These "asserts" using only for self-checking and not necessary for auto-testing
+if __name__ == '__main__':
+    assert checkio("Hello World!") == "l", "Hello test"
+    assert checkio("How do you do?") == "o", "O is most wanted"
+    assert checkio("One") == "e", "All letter only once."
