@@ -5,7 +5,7 @@ def total_cost(calls):
     for day in range(len(calls)):
         first_colon = calls[day].find(":")
         duration_seconds = int(calls[day][first_colon+6:])
-        duration_minutes = round((duration_seconds/60)+0.5, 0)
+        duration_minutes = round((duration_seconds/60)+0.5, 0) # add 0.5 to ensure we round up
         print("duration for day ", day + 1, "is ", duration_minutes)
         cost += daily_cost(duration_minutes)
         print("Cost after day ", day + 1, " is ", cost)
