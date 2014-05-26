@@ -1,11 +1,21 @@
 __author__ = 'Steve'
 def total_cost(calls):
     print(calls)
-    print(calls[0])
-    for day in len(calls):
-        print("day ", day, calls[int(day)])
+    cost = 0
+    for day in range(len(calls)):
+        first_colon = calls[day].find(":")
+        duration_seconds = int(calls[day][first_colon+6:])
+        duration_minutes = round((duration_seconds/60)+0.5, 0)
+        print("duration for day ", day + 1, "is ", duration_minutes)
+        cost += daily_cost(duration_minutes)
+        print("Cost after day ", day + 1, " is ", cost)
+    return cost
 
-    return 0
+def daily_cost(duration):
+    if duration <= 100:
+        return duration
+    else:
+        return 100 + ((duration - 100) * 2)
 
 
 if __name__ == '__main__':
