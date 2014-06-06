@@ -1,5 +1,5 @@
 __author__ = 'Steve'
-
+# consider calculating cost of call before updating summary to fix final problem
 def calculate_total_cost(summary):
     total = 0
     for date in range(len(summary)):        
