@@ -12,15 +12,20 @@ def total_cost(calls):
     print(calls)
     cost = 0
     summary = []
-    for day in range(31): # need a value for each day in the month
+    first_colon = calls[0].find(":") # used to find the data in the list elements
+    current_month = int(calls[0][first_colon - 5:first_colon - 3]) # identifies the date from the list element
+        
+    for day in range(365): # need a value for each day in the month
         summary.append(0)
     for call in range(len(calls)):
         print("call number: ", call)
-        first_colon = calls[call].find(":") # used to find the data in the list elements
         date = int(calls[call][first_colon - 5:first_colon - 3]) # identifies the date from the list element
+        month = int(calls[call][first_colon - 8:first_colon - 6]) # identifies the date from the list element
+        if month != current_month:
+            date += 31
         print("date: ", date)
         duration_seconds = int(calls[call][first_colon + 6:]) # number of seconds of the call
-        duration_minutes = int(round((duration_seconds / 60) + 0.5, 0))  # add 0.5 to ensure we round up
+        duration_minutes = int(round((duration_seconds / 60) + 0.49, 0))  # add 0.49 to ensure we round up
         print("minutes: ", duration_minutes)
         summary[date] += duration_minutes
         print("summary after call ",call, " is ", summary)
